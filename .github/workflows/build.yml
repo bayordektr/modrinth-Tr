@@ -1,6 +1,8 @@
 name: Build Desktop App
 on:
-  workflow_dispatch:
+  workflow_dispatch: # İstediğinde elinle çalıştırmak için
+  schedule:
+    - cron: '0 0 * * 3' # HER ÇARŞAMBA GECE YARISI otomatik olarak çalışır!
 
 jobs:
   build-windows:
@@ -13,12 +15,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 10.33.2
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
